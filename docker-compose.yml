@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+  bd:
+    container_name: bd
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: django
+      MYSQL_USER: django
+      MYSQL_PASSWORD: django
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mariadb_django:/var/lib/mysql/
+  bookmedik:
+    container_name: django
+    image: alejandrodominguezalcocer/django:v1
+    restart: always
+    ports:
+      - 80:8080
+    volumes:
+      - django_data:/usr/share/django_tutorial
+volumes:
+  django_data:
+  mariadb_django:
+
